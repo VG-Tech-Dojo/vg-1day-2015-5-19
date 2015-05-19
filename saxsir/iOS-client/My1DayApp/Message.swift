@@ -11,14 +11,23 @@ import UIKit
 class Message {
     let body: String!
     let icon: UIImage?
+    let createdAt: String!
+    let username: String!
     
     init?(dictionary: [String: AnyObject]) {
-        if let body: String = dictionary["body"] as? String, let icon: String = dictionary["icon"] as? String {
-            self.body = body
-            self.icon = ImageHelper.imageWithBase64EncodedString(icon)
+        if let body: String = dictionary["body"] as? String,
+            let icon: String = dictionary["icon"] as? String,
+            let createdAt: String = dictionary["created_at"] as? String,
+            let username: String = dictionary["username"] as? String {
+                self.body = body
+                self.icon = ImageHelper.imageWithBase64EncodedString(icon)
+                self.createdAt = createdAt
+                self.username = username
         } else {
             self.body = nil
             self.icon = nil
+            self.createdAt = nil
+            self.username = nil
             return nil
         }
     }

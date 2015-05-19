@@ -25,7 +25,14 @@ $app->post('/messages', function (Request $request) use ($app) {
 
     $createdMessage = $app->createMessage($username, $body, base64_encode(file_get_contents($app['icon_image_path'])));
 
-    return $app->json($createdMessage);
+    // botのメッセージを生成
+    $botMessage = $body;
+    if ($body == "uranai") {
+        $botMessage = "大吉";
+    }
+    $app->createMessage("bot", $botMessage, base64_encode(file_get_contents($app['icon_image_path'])));
+
+    // return $app->json($createdMessage);
 });
 
 return $app;

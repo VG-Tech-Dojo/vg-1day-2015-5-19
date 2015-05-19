@@ -11,14 +11,20 @@ import UIKit
 class MessageTableViewCell: UITableViewCell {
     @IBOutlet weak private var iconImageView: UIImageView!
     @IBOutlet weak private var messageLabel: UILabel!
-    
+    @IBOutlet weak var createdAtLabel: UILabel!
+    @IBOutlet weak var usernameLabel: UILabel!
+
     override func prepareForReuse() {
         self.iconImageView.image = nil
         self.messageLabel.text = nil
+        self.createdAtLabel.text = nil
+        self.usernameLabel.text = nil
     }
     
     func setupComponentsWithMessage(message: Message) {
         self.iconImageView.image = message.icon
         self.messageLabel.text = message.body
+        self.createdAtLabel.text = message.createdAt
+        self.usernameLabel.text = message.username
     }
 }
